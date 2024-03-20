@@ -1,0 +1,15 @@
+1) Document 클래스
+
+ : 연결해서 얻어온 HTML 전체 문서
+
+
+
+2) Elements 클래스
+
+ : Element가 모인 자료형
+
+
+
+3) Element 클래스
+
+ : Document의 HTML 요소
