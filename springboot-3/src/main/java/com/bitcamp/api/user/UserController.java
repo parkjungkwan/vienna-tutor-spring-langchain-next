@@ -4,10 +4,13 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.data.repository.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.bitcamp.api.enums.Messenger;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,17 +19,34 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserController {
 
-    @PostMapping("/login")
+    private final UserRepository repo;
+
+    @PostMapping("/api/login")
     public Map<String, ?> login(@RequestBody Map<?,?> paramMap){
         Map<String, ?> map = new HashMap<>();
        
         return map;
     }
 
-    public Map<String, ?> addUsers() {
-        Map<String, ?> map = new HashMap<>();
-       
-        return map;
+
+    @PostMapping(path="/api/users")
+    public Map<String, ?> join(@RequestBody Map<?,?> paramMap) {
+        String strHeight = String.valueOf(paramMap.get("height"));
+        String strWeight = String.valueOf(paramMap.get("weight"));
+
+        User newUser =  repo.save(User.builder()
+         .username((String) paramMap.get("username"))
+         .password((String) paramMap.get("password"))
+         .name((String) paramMap.get("name"))
+         .phone((String) paramMap.get("phone"))
+         .job((String) paramMap.get("job"))
+         .height(Double.parseDouble(strHeight))
+         .weight(Double.parseDouble(strWeight))
+         .build());
+         System.out.println("DB 에 저장된 User 정보: "+newUser);
+        Map<String, Messenger> map = new HashMap<>();
+        map.put("result",Messenger.SUCCESS);
+       return map;
     }
 
     public Map<String, ?> save(@RequestBody Map<?,?> paramMap) {

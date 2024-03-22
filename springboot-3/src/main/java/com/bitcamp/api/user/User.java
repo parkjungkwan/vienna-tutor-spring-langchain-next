@@ -1,12 +1,22 @@
 package com.bitcamp.api.user;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.*;
 
-
+@Entity(name="users")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString(exclude = {"id"})
 public class User {
+
+    @Id
+    @Column(name="id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String password;
@@ -35,6 +45,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+   
 
     @Override
     public String toString() {

@@ -15,7 +15,7 @@ export default function Login() {
 
     const handleSubmit = () => {
         alert('리퀘스트가 가져가는 이름 : ' + username)
-        const url = `${SERVER}/login`
+        const url = `${SERVER}/api/login`
         const data = { username, password }
         const config = {
             headers: {
