@@ -3,6 +3,7 @@ package com.bitcamp.api.user;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.data.repository.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,8 +24,18 @@ public class UserController {
 
     @PostMapping("/api/login")
     public Map<String, ?> login(@RequestBody Map<?,?> paramMap){
-        Map<String, ?> map = new HashMap<>();
-       
+        Map<String, Messenger> map = new HashMap<>();
+        String username = (String) paramMap.get("username");
+        String password = (String) paramMap.get("password");
+        User dbUser = repo.findByUsername(username).orElse(null);
+        System.out.println("DB User is "+dbUser);
+        if(dbUser == null){
+            map.put("message", Messenger.FAIL);
+        }else if(!dbUser.getPassword().equals(password)){
+            map.put("message", Messenger.WRONG_PASSWORD);
+        }else{
+            map.put("message", Messenger.SUCCESS);
+        }
         return map;
     }
 
@@ -34,6 +45,7 @@ public class UserController {
         String strHeight = String.valueOf(paramMap.get("height"));
         String strWeight = String.valueOf(paramMap.get("weight"));
 
+        @SuppressWarnings("null")
         User newUser =  repo.save(User.builder()
          .username((String) paramMap.get("username"))
          .password((String) paramMap.get("password"))

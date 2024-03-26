@@ -1,5 +1,5 @@
 package com.bitcamp.api.enums;
 
 public enum Messenger {
-    SUCCESS, FAIL
+    SUCCESS, FAIL, WRONG_PASSWORD
 }

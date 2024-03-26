@@ -1,8 +1,11 @@
 'use client'
 import axios from "axios"
 import { useState } from "react"
+import { useRouter } from "next/navigation";
 const SERVER = 'http://localhost:8080'
 export default function Login() {
+    const router = useRouter();
+
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const handleUsername = (e: any) => {
@@ -27,7 +30,20 @@ export default function Login() {
         }
         axios.post(url,data,config)
         .then(res => {
-            alert(JSON.stringify(res.data))
+            const message = res.data.message
+            alert((message))
+            if(message === 'SUCCESS'){
+                router.push('/articles')
+            }else if(message === 'FAIL'){
+                alert("FAIL");
+            }else if(message === 'WRONG_PASSWORD'){
+                alert("WRONG_PASSWORD");
+            }else{
+                alert("지정되지 않은 값");
+            }
+            
+ 
+            
         })
     }
     return (<>
