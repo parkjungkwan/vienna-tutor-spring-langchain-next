@@ -3,6 +3,7 @@
 import { useState } from "react"
 import axios from 'axios';
 import Link from "next/link";
+import './globals.css'
 
 const SERVER = 'http://localhost:8080'
 export default function Home() {
@@ -31,15 +32,15 @@ export default function Home() {
   
   }
 
-  return (<>
+  return (<div className='text-red-500 flex justify-center items-center'>
   <div>welcom to react world !</div>
-  <h3>이름 입력</h3>
+  <h3 className='text-red-500'>이름 입력</h3>
   <input type="text" onChange={handleChange} /><br />
   <button onClick={handleClick}>전 송</button><br /><br />
   <Link href={"/login"} >로그인</Link><br />
   <Link href={"/join"}>회원가입</Link>
   <Link href={"/mui-demo"}>MUI 데모</Link>
-  </>)
+  </div>)
 
 
 }
