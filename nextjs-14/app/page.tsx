@@ -38,6 +38,7 @@ export default function Home() {
   <button onClick={handleClick}>전 송</button><br /><br />
   <Link href={"/login"} >로그인</Link><br />
   <Link href={"/join"}>회원가입</Link>
+  <Link href={"/mui-demo"}>MUI 데모</Link>
   </>)
 
 

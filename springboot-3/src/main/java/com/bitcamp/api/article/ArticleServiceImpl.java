@@ -4,25 +4,24 @@ package com.bitcamp.api.article;
 import com.bitcamp.api.common.AbstractService;
 import com.bitcamp.api.enums.Messenger;
 
+import lombok.RequiredArgsConstructor;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
 public class ArticleServiceImpl extends AbstractService {
-    private final static ArticleServiceImpl instance = new ArticleServiceImpl();
-    private ArticleRepository repository;
 
-    private ArticleServiceImpl() {
-        repository = ArticleRepository.getInstance();
-    }
-
-    public static ArticleServiceImpl getInstance() {
-        return instance;
-    }
+    private final ArticleRepository repository;
 
     @Override
-    public Messenger save(Object o) {
-        return null;
+    public Messenger save(Object t) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'save'");
     }
 
     @Override
@@ -32,26 +31,33 @@ public class ArticleServiceImpl extends AbstractService {
 
     @Override
     public Optional findById(Long id) {
-        return Optional.empty();
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findById'");
     }
 
     @Override
     public String count() {
-        return null;
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'count'");
     }
 
     @Override
     public Optional getOne(String id) {
-        return Optional.empty();
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getOne'");
     }
 
     @Override
-    public String delete(Object o) {
-        return null;
+    public String delete(Object t) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
 
     @Override
     public Boolean existsById(Long id) {
-        return null;
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'existsById'");
     }
+
+    
 }
