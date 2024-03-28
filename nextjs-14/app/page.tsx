@@ -4,8 +4,10 @@ import { useState } from "react"
 import axios from 'axios';
 import Link from "next/link";
 import { Button, Input } from "@mui/material";
+import { PG } from "./atoms/enums/PG";
 
-const SERVER = 'http://localhost:8080'
+
+
 export default function Home() {
   const [name, setName] = useState('')
   const handleChange = (e: any) => {
@@ -14,7 +16,7 @@ export default function Home() {
 
   const handleClick = () => {
     alert('리퀘스트가 가져가는 이름 : ' + name)
-    const url = `${SERVER}/name`
+    const url = `${API.SERVER}/name`
     const data = { 'name': name }
     const config = {
       headers: {
@@ -41,9 +43,9 @@ export default function Home() {
     <Button variant="outlined" onClick={handleClick}>전 송</Button>
     <br />
     <br />
-    <Link href={"/pages/users/login"} className="underline" >로그인</Link><br />
-    <Link href={"/pages/users/join"} className="underline">회원가입</Link><br />
-    <Link href={"/pages/demos/mui-demo"} className="underline">MUI 데모</Link>
+    <Link href={`${PG.USER}/login`} className="underline" >로그인</Link><br />
+    <Link href={`${PG.USER}/join`} className="underline">회원가입</Link><br />
+    <Link href={`${PG.DEMO}/mui-demo`} className="underline">MUI 데모</Link>
   </div>
   )
 

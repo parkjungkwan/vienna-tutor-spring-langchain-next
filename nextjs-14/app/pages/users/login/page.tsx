@@ -2,7 +2,8 @@
 import axios from "axios"
 import { useState } from "react"
 import { useRouter } from "next/navigation";
-const SERVER = 'http://localhost:8080'
+import { API } from '@/app/atoms/enums/API';
+import AxiosConfig from "@/app/organisms/configs/axios-config";
 export default function Login() {
     const router = useRouter();
 
@@ -18,17 +19,7 @@ export default function Login() {
 
     const handleSubmit = () => {
         alert('리퀘스트가 가져가는 이름 : ' + username)
-        const url = `${SERVER}/api/login`
-        const data = { username, password }
-        const config = {
-            headers: {
-                "Cache-Control": "no-cache",
-                "Content-Type": "application/json",
-                Authorization: `Bearer blah ~`,
-                "Access-Control-Allow-Origin": "*",
-            }
-        }
-        axios.post(url,data,config)
+        axios.post( `${API.SERVER}/login`,{ username, password },AxiosConfig())
         .then(res => {
             const message = res.data.message
             alert((message))
