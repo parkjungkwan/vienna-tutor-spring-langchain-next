@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components{
+    .flexcenter {@apply flex items-center justify-center}
+    .margincenter {@apply mx-auto my-0}
+    .flexwrap {@apply flex flex-wrap}
+}
