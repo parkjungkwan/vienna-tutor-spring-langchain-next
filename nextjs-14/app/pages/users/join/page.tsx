@@ -38,13 +38,13 @@ export default function Join() {
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
-        const url = `${API.SERVER}/users`
-        const data = { username, password, name, phone, job, height, weight }
-        axios.post(url, data, AxiosConfig())
-            .then(res => { 
-                alert(JSON.stringify(res.data)) 
-                router.push("/login")
-            })
+        axios.post(`${API.SERVER}/users`, 
+                    { username, password, name, phone, job, height, weight }, 
+                    AxiosConfig())
+                        .then(res => { 
+                            alert(JSON.stringify(res.data)) 
+                            router.push("/login")
+                        })
     }   
     return (<>
         <div className="container">

@@ -1,17 +1,5 @@
 
-
-const Company = (props: ICompany) => {
-    return (
-			 <tr key={props.id}>
-                <td>{props.company}</td>
-                <td>{props.contact}</td>
-                <td>{props.country}</td>
-            </tr>
-    );
-};
-
 export default function Companies(){
-
     const companies = [
         {id:0,company:'Alfreds Futterkiste',contact:'Maria Anders',country:'Germany'},
         {id:1,company:'Centro comercial Moctezuma',contact:'Francisco Chang',country:'Mexico'},
@@ -21,8 +9,6 @@ export default function Companies(){
         {id:5,company:'Magazzini Alimentari Riuniti',contact:'Giovanni Rovelli',country:'Italy'},
 
     ]
-
-    const companyMap = companies.map((v)=>(<Company  {...v} />))
 
     return (<>
         <h2>HTML Table</h2>
@@ -36,7 +22,15 @@ export default function Companies(){
   </tr>
     </thead>
     <tbody>
-    {companyMap}
+    {companies.map((props: ICompany) => {
+    return (
+			 <tr key={props.id}>
+                <td>{props.company}</td>
+                <td>{props.contact}</td>
+                <td>{props.country}</td>
+            </tr>
+    );
+})}
     </tbody>
 </table>
         </>)
