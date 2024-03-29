@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
 
-const ReduxProvider = dynamic(() => import("@/store/redux-provider"), {
+const ReduxProvider = dynamic(() => import("@/redux/redux-provider"), {
   ssr: false
 });
 

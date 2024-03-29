@@ -2,8 +2,8 @@
 import axios from "axios"
 import { useState } from "react"
 import { useRouter } from "next/navigation";
-import { API } from '@/app/atoms/enums/API';
-import AxiosConfig from "@/app/organisms/configs/axios-config";
+import { API } from '@/redux/common/enums/API';
+import AxiosConfig from "@/redux/common/configs/axios-config";
 export default function Login() {
     const router = useRouter();
 

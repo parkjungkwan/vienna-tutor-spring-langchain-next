@@ -1,0 +1,4 @@
+interface ICounter{
+    value: number
+  }
+  
