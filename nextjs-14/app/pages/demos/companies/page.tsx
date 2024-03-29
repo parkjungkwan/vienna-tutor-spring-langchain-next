@@ -1,5 +1,6 @@
+import { NextPage } from "next";
 
-export default function Companies(){
+const CompaniesPage: NextPage = () =>{
     const companies = [
         {id:0,company:'Alfreds Futterkiste',contact:'Maria Anders',country:'Germany'},
         {id:1,company:'Centro comercial Moctezuma',contact:'Francisco Chang',country:'Mexico'},
@@ -35,3 +36,5 @@ export default function Companies(){
 </table>
         </>)
 }
+
+export default CompaniesPage

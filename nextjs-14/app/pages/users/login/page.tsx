@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation";
 import { API } from '@/redux/common/enums/API';
 import AxiosConfig from "@/redux/common/configs/axios-config";
-export default function Login() {
+const LoginPage = () => {
     const router = useRouter();
 
     const [username, setUsername] = useState('')
@@ -46,3 +46,5 @@ export default function Login() {
         <button onClick={handleSubmit}>확인</button>
     </>)
 }
+
+export default LoginPage;

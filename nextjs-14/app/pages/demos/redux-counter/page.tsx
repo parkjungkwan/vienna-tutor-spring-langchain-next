@@ -3,8 +3,9 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useSelector, useDispatch } from 'react-redux'
 import { handlePlus, handleMinus, getCount } from '@/redux/features/counter/counter.slice'
+import { NextPage } from 'next';
 
-export default function Counter() {
+const CounterPage:NextPage = () => {
     const count = useSelector(getCount)
     const dispatch = useDispatch()
     return (<>
@@ -15,3 +16,5 @@ export default function Counter() {
         </div>
     </>)
 }
+
+export default CounterPage;

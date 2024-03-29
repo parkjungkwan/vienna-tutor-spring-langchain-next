@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { useRouter } from "next/navigation";
 import { API } from '@/redux/common/enums/API';
 import AxiosConfig from '@/redux/common/configs/axios-config';
+import { NextPage } from 'next';
 
-export default function Join() {
+const JoinPage: NextPage = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
@@ -80,3 +81,6 @@ export default function Join() {
 function alert(arg0: string) {
     throw new Error('Function not implemented.');
 }
+
+
+export default JoinPage;
