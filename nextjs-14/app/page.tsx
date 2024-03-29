@@ -46,7 +46,9 @@ export default function Home() {
     <br />
     <Link href={`${PG.USER}/login`} className="underline" >로그인</Link><br />
     <Link href={`${PG.USER}/join`} className="underline">회원가입</Link><br />
-    <Link href={`${PG.DEMO}/mui-demo`} className="underline">MUI 데모</Link>
+    <Link href={`${PG.DEMO}/mui-demo`} className="underline">MUI 데모</Link><br />
+    <Link href={`${PG.DEMO}/counter`} className="underline">카운터 데모</Link><br />
+    <Link href={`${PG.DEMO}/redux-counter`} className="underline">리덕스 카운터 데모</Link><br />
   </div>
   )
 
