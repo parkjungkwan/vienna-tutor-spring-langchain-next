@@ -7,7 +7,9 @@ import { useState, useEffect } from "react"
 import {Box, Button, Input} from '@mui/material';
 import AxiosConfig from "@/redux/common/configs/axios-config";
 import { API } from "@/redux/common/enums/API";
+import { useSelector, useDispatch } from 'react-redux'
 import { NextPage } from "next";
+import { getAllArticles } from "@/redux/features/articles/article.service";
 // import React from "react";
 
 interface IArticle {
@@ -19,27 +21,11 @@ interface IArticle {
 }
 
 const ArtilcesPage: NextPage = () => {
-
+    const dispatch = useDispatch()
     const [articles, setArticles] = useState([])
 
     useEffect(() => {
-        axios.get(`${API.SERVER}/articles`, AxiosConfig())
-            .then(res => {
-                const messege = res.data.messege
-                if (messege === 'SUCCESS') {
-                    console.log("게시글이 있습니다.")
-                    const arr = res.data.result
-                    for (let i of arr) {
-                        console.log(i)
-                        setArticles(res.data.result)
-                    }
-
-                } else if (messege === 'FAIL') {
-                    console.log("게시글이 없습니다.")
-                } else {
-                    console.log("지정되지 않은 값")
-                }
-            })
+        dispatch(getAllArticles(1))
     }, [])
     
     return (<>

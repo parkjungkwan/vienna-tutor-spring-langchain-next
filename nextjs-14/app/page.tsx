@@ -49,6 +49,7 @@ export default function Home() {
     <Link href={`${PG.DEMO}/mui-demo`} className="underline">MUI 데모</Link><br />
     <Link href={`${PG.DEMO}/counter`} className="underline">카운터 데모</Link><br />
     <Link href={`${PG.DEMO}/redux-counter`} className="underline">리덕스 카운터 데모</Link><br />
+    <Link href={`${PG.BOARD}`} className="underline">전체 게시글</Link><br />
   </div>
   )
 

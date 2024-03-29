@@ -24,7 +24,7 @@ public class ArticleController {
     @GetMapping("/api/all-articles")
     public Map<?,?> findAll() throws SQLException {
         Map<String, Object> map = new HashMap<>();
-        map.put("message", Messenger.SUCCESS);
+        
         @SuppressWarnings("unchecked")
         
         List<Article> list = new ArrayList<>();
@@ -35,11 +35,13 @@ public class ArticleController {
         // .writer("작가")
         // .registerDate("2024-03")
         // .build());
-
+        map.put("message", Messenger.SUCCESS);
         list = service.findAll();
         list.forEach(System.out::println);
         System.out.println("리스트 사이즈 : "+list.size());
+        System.out.println("메시지 : "+map.get("message"));
         map.put("result",list);
+
         return map;
     }
 }
