@@ -20,16 +20,12 @@ const handleFulfilled =  (state: any, {payload}: any) => {
 
 }
 
-
 const handlePending = (state: any) => {
   
 }
-
 const handleRejected = (state: any) => {
   
 }
-
-
 
 export const articleSlice = createSlice({
     name: "articles",
@@ -40,7 +36,7 @@ export const articleSlice = createSlice({
 
         builder
         .addCase(fetchAllArticles.fulfilled, handleFulfilled)
-
+  
     }
 })
 export const getAllArticles = (state: any) => {

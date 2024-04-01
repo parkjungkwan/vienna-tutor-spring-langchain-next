@@ -23,7 +23,7 @@ interface IArticle {
 
 const ArtilcesPage: NextPage = () => {
     const dispatch = useDispatch()
-    const [articles, setArticles] = useState([])
+ 
    const allArticles: [] = useSelector(getAllArticles)
 
     if(allArticles !== undefined){
