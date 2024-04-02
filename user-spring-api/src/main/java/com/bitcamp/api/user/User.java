@@ -1,10 +1,17 @@
 package com.bitcamp.api.user;
 
+import java.util.List;
+
+import com.bitcamp.api.account.Account;
+import com.bitcamp.api.article.Article;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.*;
 
@@ -26,6 +33,13 @@ public class User {
     private String job;
     private double height;
     private double weight;
+
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
+
+    @OneToMany(mappedBy = "writer")
+    private List<Article> article;
 
     @Builder(builderMethodName = "builder")
     public User(Long id,String username, String password,

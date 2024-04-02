@@ -1,3 +1,5 @@
+
+
 'use client'
 
 import axios from "axios"
@@ -11,9 +13,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { NextPage } from "next";
 import { fetchAllArticles } from "@/redux/features/articles/article.service";
 import { getAllArticles } from "@/redux/features/articles/article.slice";
-import Columns from "@/app/components/articles/columns";
 // import React from "react";
-
 
 interface IArticle {
     id: number,
@@ -23,7 +23,7 @@ interface IArticle {
     registerDate: string
 }
 
-const ArtilcesPage: NextPage = ({data}:any) => {
+const UsersPage: NextPage = () => {
     const dispatch = useDispatch()
  
    const allArticles: [] = useSelector(getAllArticles)
@@ -45,24 +45,28 @@ const ArtilcesPage: NextPage = ({data}:any) => {
     }, [])
     
     return (<>
-        <h2>개인페이지 Article</h2>
-        <Box sx={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={data}
-        columns={Columns()}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 5,
-            },
-          },
-        }}
-        pageSizeOptions={[5]}
-        checkboxSelection
-        disableRowSelectionOnClick
-      />
-    </Box>
+        <h2>사용자 목록</h2>
+        <table border={1}>
+            <thead>
+                <tr>
+                    <th>title</th>
+                    <th>content</th>
+                    <th>writer</th>
+                    <th>registerDate</th>
+                </tr>
+            </thead>
+            <tbody>
+                {allArticles?.map((props: IArticle) => (
+                    <tr key={props.id}>
+                        <td>{props.title}</td>
+                        <td>{props.content}</td>
+                        <td>{props.writer}</td>
+                        <td>{props.registerDate}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
     </>)
 }
 
-export default ArtilcesPage
+export default UsersPage
