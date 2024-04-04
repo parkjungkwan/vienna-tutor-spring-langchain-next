@@ -13,11 +13,13 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { useRouter } from 'next/navigation';
 
 const pages = ['회원가입','로그인', '카운터','게시글목록', '사용자목록'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Header() {
+  const router = useRouter();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -29,7 +31,13 @@ function Header() {
   };
 
   const handleCloseNavMenu = (event: any) => {
-    alert('클릭한 메뉴 : '+event.target.value)
+    switch(event.target.innerText){
+      case "회원가입" : router.push("/pages/users/join"); break;
+      case "로그인" : router.push("/pages/users/login"); break;
+      case "카운터" : router.push("/pages/demos/counter"); break;
+      case "게시글목록" : router.push("/pages/articles/list"); break;
+      case "사용자목록" : router.push("/pages/users/list"); break;
+    }
   };
 
   const handleCloseUserMenu = () => {

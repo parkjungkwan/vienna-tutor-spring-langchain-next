@@ -1,4 +1,5 @@
-export interface IUser{
+
+export interface UserColumn{
     id?: string;
     username?: string;
     password?: string;

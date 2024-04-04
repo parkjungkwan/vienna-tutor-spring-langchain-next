@@ -3,8 +3,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import MuiDemoRows from '@/app/components/rows/mui-demo-rows';
-import MuiDemoColumns from '@/app/components/columns/mui-demo-columns';
+import MuiDemoRows from '@/app/components/demos/mui-demo-rows';
+import MuiDemoColumns from '@/app/components/demos/mui-demo-columns';
 import { NextPage } from 'next';
 
 // const columns: GridColDef[] =

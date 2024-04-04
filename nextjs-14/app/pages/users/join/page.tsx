@@ -40,7 +40,7 @@ const JoinPage: NextPage = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault()
         axios.post(`${API.SERVER}/users`, 
-                    { username, password, name, phone, job, height, weight }, 
+                    { username, password, name, phone, job }, 
                     AxiosConfig())
                         .then(res => { 
                             alert(JSON.stringify(res.data)) 
@@ -62,10 +62,7 @@ const JoinPage: NextPage = () => {
             <input type="phone" placeholder="Enter Phone" name="phone" required onChange={handlePhone} /><br />     
             <label htmlFor="job"><b>Job</b></label>
             <input type="job" placeholder="Enter Job" name="job" required onChange={handleJob} /><br />
-            <label htmlFor="height"><b>Height</b></label>
-            <input type="height" placeholder="Enter Height" name="height" required onChange={handleHeight} /><br />
-            <label htmlFor="weight"><b>Weight</b></label>
-            <input type="weight" placeholder="Enter Weight" name="weight" required onChange={handleWeight} /><br />
+   
             {/* <label>
                 <input type="checkbox" checked={true} name="remember" style={{ marginBottom: "15px" }} /> Remember me
             </label> */}    

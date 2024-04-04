@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 
 
@@ -11,7 +12,7 @@ export default function Columns(): GridColDef[]{
             field: 'id',
             headerName: 'No.',
             renderCell(){
-                return <></>
+                return  <></>
             }
         },
         {
