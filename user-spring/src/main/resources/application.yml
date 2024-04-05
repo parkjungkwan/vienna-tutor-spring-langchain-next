@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: api
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        jdbc:
+          lob:
+            '[non_contextual_creation]': true
+        '[format_sql]': true
+    show-sql: true
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type: trace
