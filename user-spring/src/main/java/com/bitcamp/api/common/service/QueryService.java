@@ -5,9 +5,8 @@ import java.util.Optional;
 
 import com.bitcamp.api.common.component.PageRequestVo;
 public  interface QueryService<T> {
-    List<T> findAll(PageRequestVo vo) throws SQLException;
+    List<T> findAll(PageRequestVo vo) ;
     Optional<T> findById(Long id);
-    String count();
-    Optional<T> getOne(String id);
-    Boolean existsById(Long id);
+    long count();
+    boolean existsById(Long id);
 }

@@ -1,53 +1,56 @@
 package com.bitcamp.api.user.service;
 
-import java.sql.SQLException;
-import java.util.List;
-import java.util.Optional;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
-import org.hibernate.mapping.Map;
+import java.sql.SQLException;
+import java.util.*;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-import com.bitcamp.api.common.component.MessengerVo;
 import com.bitcamp.api.common.component.PageRequestVo;
-import com.bitcamp.api.user.UserService;
 import com.bitcamp.api.user.model.User;
 import com.bitcamp.api.user.model.UserDto;
 import com.bitcamp.api.user.repository.UserRepository;
 
-import lombok.RequiredArgsConstructor;
-
+@Log4j2
 @RequiredArgsConstructor
-@Service
-public class UserServiceImpl implements UserService{
-
-    private final UserRepository repository ;
-
-   
+@Service 
+public class UserServiceImpl implements UserService {
+    
+    private final UserRepository repository;
 
     @Override
-    public UserDto save(UserDto param) {
-          
-  
+    public UserDto save(UserDto t) {
+        return entityToDto(Optional.of((repository.save(dtoToEntity(t)))));
+    }
 
+    @Override
+    public void deleteById(Long id) {
+        repository.deleteById(id);
+    }
+
+    @Override
+    public List<UserDto> findAll(PageRequestVo vo) {
+        //return repository.findAll(vo);
         return null;
     }
 
     @Override
-    public String delete(UserDto t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    public Optional<UserDto> findById(Long id) {
+        return Optional.of(entityToDto(repository.findById(id)));
     }
 
     @Override
-    public String save(Object t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+    public long count() {
+        return repository.count();
     }
 
     @Override
-    public String delete(Object t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    public boolean existsById(Long id) {
+        return repository.existsById(id);
     }
 
     @Override
@@ -68,40 +71,6 @@ public class UserServiceImpl implements UserService{
         throw new UnsupportedOperationException("Unimplemented method 'findUsersByJob'");
     }
 
-    @Override
-    public String dummy() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dummy'");
-    }
-
-    @Override
-    public List<UserDto> findAll(PageRequestVo vo) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
-    }
-
-    @Override
-    public Optional<UserDto> findById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
-    }
-
-    @Override
-    public String count() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'count'");
-    }
-
-    @Override
-    public Optional<UserDto> getOne(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getOne'");
-    }
-
-    @Override
-    public Boolean existsById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'existsById'");
-    }
+   
     
 }

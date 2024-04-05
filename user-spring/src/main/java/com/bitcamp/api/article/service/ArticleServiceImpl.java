@@ -6,60 +6,50 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.bitcamp.api.article.model.Article;
 import com.bitcamp.api.article.model.ArticleDto;
+import com.bitcamp.api.article.repository.ArticleRepository;
 import com.bitcamp.api.common.component.PageRequestVo;
 
-@Service
+import lombok.RequiredArgsConstructor;
 
+@Service
+@RequiredArgsConstructor
 public class ArticleServiceImpl implements ArticleService{
 
+    private final ArticleRepository repository;
+
     @Override
-    public String dummy() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dummy'");
+    public ArticleDto save(ArticleDto t) {
+        return entityToDto(Optional.of(repository.save(dtoToEntity(t))));
     }
 
     @Override
-    public String save(ArticleDto t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+    public void deleteById(Long id) {
+        repository.deleteById(id);
     }
 
     @Override
-    public String delete(ArticleDto t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
-
-    @Override
-    public List<ArticleDto> findAll(PageRequestVo vo) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+    public List<ArticleDto> findAll(PageRequestVo vo) {
+        //return repository.findAll(vo);
+        return null;
     }
 
     @Override
     public Optional<ArticleDto> findById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        return Optional.of(entityToDto(repository.findById(id)));
     }
 
     @Override
-    public String count() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'count'");
+    public long count() {
+        return repository.count();
     }
 
     @Override
-    public Optional<ArticleDto> getOne(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getOne'");
+    public boolean existsById(Long id) {
+        return repository.existsById(id);
     }
 
-    @Override
-    public Boolean existsById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'existsById'");
-    }
-
+   
     
 }
