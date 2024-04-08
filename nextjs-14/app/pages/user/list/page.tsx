@@ -63,7 +63,7 @@ const UsersPage: NextPage = () => {
 
     
     return (<>
-        <h2>사용자 목록</h2>
+        <h2>사용자 목록</h2>``
         <div style={{ height: 400, width: "100%" }}>
       <DataGrid // 🔥 4
         rows={allUsers || []}

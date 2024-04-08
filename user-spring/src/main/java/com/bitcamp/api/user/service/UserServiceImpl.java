@@ -24,8 +24,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto save(UserDto t) {
-        return entityToDto(Optional.of((repository.save(dtoToEntity(t)))));
+        return entityToDto((repository.save(dtoToEntity(t))));
     }
+
+    // @Override
+    // public UserDto save(UserDto t) {
+    //     return entityToDto(Optional.of((repository.save(dtoToEntity(t)))));
+    // }
 
     @Override
     public void deleteById(Long id) {
@@ -40,7 +45,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<UserDto> findById(Long id) {
-        return Optional.of(entityToDto(repository.findById(id)));
+        // Optional.of(entityToDto(repository.findById(id)));
+        return null;
     }
 
     @Override

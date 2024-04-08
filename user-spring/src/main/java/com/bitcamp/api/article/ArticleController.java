@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.bitcamp.api.article.model.ArticleDto;
 import com.bitcamp.api.article.service.ArticleServiceImpl;
-import com.bitcamp.api.common.component.MessengerVo;
+import com.bitcamp.api.common.component.Messenger;
 import com.bitcamp.api.common.component.PageRequestVo;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -35,33 +37,38 @@ public class ArticleController {
 
 
     @PostMapping("")
-    public ResponseEntity<MessengerVo> save(PageRequestVo vo) throws SQLException {
-        service.save(null);
-        return ResponseEntity.ok(new MessengerVo());
+    public ResponseEntity<Messenger> save(ArticleDto dto) throws SQLException {
+        ArticleDto newDto = service.save(dto);
+        Messenger messenger = (newDto.getId()!= 0L) 
+        ? Messenger.builder().build()
+        : Messenger.builder().build();
+
+
+        return ResponseEntity.ok(messenger);
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<MessengerVo> deleteById(@PathVariable long id) throws SQLException {
+    public ResponseEntity<Messenger> deleteById(@PathVariable long id) throws SQLException {
         service.deleteById(0L);
-        return ResponseEntity.ok(new MessengerVo());
+        return ResponseEntity.ok(new Messenger());
     }
     @GetMapping("")
-    public ResponseEntity<MessengerVo> findAll(PageRequestVo vo) throws SQLException {
+    public ResponseEntity<Messenger> findAll(PageRequestVo vo) throws SQLException {
         service.findAll(null);
-        return ResponseEntity.ok(new MessengerVo());
+        return ResponseEntity.ok(new Messenger());
     }
     @GetMapping("/{id}")
-    public ResponseEntity<MessengerVo> findById(PageRequestVo vo) throws SQLException {
+    public ResponseEntity<Messenger> findById(PageRequestVo vo) throws SQLException {
         service.findById(0L);
-        return ResponseEntity.ok(new MessengerVo());
+        return ResponseEntity.ok(new Messenger());
     }
     @GetMapping("/count")
-    public ResponseEntity<MessengerVo> count(PageRequestVo vo) throws SQLException {
+    public ResponseEntity<Messenger> count(PageRequestVo vo) throws SQLException {
         service.count();
-        return ResponseEntity.ok(new MessengerVo());
+        return ResponseEntity.ok(new Messenger());
     }
     @GetMapping("/exists/{id}")
-    public ResponseEntity<MessengerVo> existsById(@PathVariable long id) throws SQLException {
+    public ResponseEntity<Messenger> existsById(@PathVariable long id) throws SQLException {
         service.existsById(0L);
-        return ResponseEntity.ok(new MessengerVo());
+        return ResponseEntity.ok(new Messenger());
     }
 }

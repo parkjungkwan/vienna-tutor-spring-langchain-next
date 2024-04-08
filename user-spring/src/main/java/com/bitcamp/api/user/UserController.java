@@ -1,6 +1,6 @@
 package com.bitcamp.api.user;
 import com.bitcamp.api.article.model.ArticleDto;
-import com.bitcamp.api.common.component.MessengerVo;
+import com.bitcamp.api.common.component.Messenger;
 import com.bitcamp.api.common.component.PageResultVo;
 import com.bitcamp.api.common.proxy.TypeProxy;
 import com.bitcamp.api.user.model.User;
@@ -34,34 +34,37 @@ public class UserController {
     // -------------------- Command ---------------------------
 
     @PostMapping(path = "")
-    public ResponseEntity<MessengerVo> save(@RequestBody Map<String, UserDto> param) {
-        log.info("입력받은 정보 : {}", param );
-        // User newUser = service.save(param);
-        return ResponseEntity.ok(new MessengerVo());
+    public ResponseEntity<Messenger> save(@RequestBody UserDto dto) {
+        log.info("입력받은 정보 : {}", dto );
+        service.save(dto);
+        return ResponseEntity.ok(new Messenger().builder()
+                                                .message("SUCCESS")
+                                                .code("200")
+                                                .build());
 
     }
 
      // -------------------- Query ---------------------------
 
      @PostMapping(path = "/login")
-     public ResponseEntity<MessengerVo> login(@RequestBody Map<?, ?> paramap) {
-         Map<String, MessengerVo> response = new HashMap<>();
+     public ResponseEntity<Messenger> login(@RequestBody Map<?, ?> paramap) {
+         Map<String, Messenger> response = new HashMap<>();
  
          String username = (String)paramap.get("username");
  
          //User user = service.findByUsername(username).orElse(null);
  
-         return ResponseEntity.ok(new MessengerVo());
+         return ResponseEntity.ok(new Messenger());
      }
 
 
-    @GetMapping("")
+    @GetMapping("/find-all")
     public ResponseEntity<List<UserDto>> findAll(Pageable pageable){
 
         return ResponseEntity.ok(new ArrayList<UserDto>());
     }
 
-    @GetMapping(path="/{id}")
+    @GetMapping(path="/find/{id}")
 
     public ResponseEntity<Optional<UserDto>> findUserById(@PathVariable Long id) {
 
@@ -71,74 +74,74 @@ public class UserController {
 
 
     @PutMapping("/password")
-    public ResponseEntity<MessengerVo> updatePassword(@RequestBody Map<?, ?> paramap) {
+    public ResponseEntity<Messenger> updatePassword(@RequestBody Map<?, ?> paramap) {
 
-        return ResponseEntity.ok(new MessengerVo());
+        return ResponseEntity.ok(new Messenger());
     }
 
 
-    @GetMapping("/api/all-users")
-    public ResponseEntity<MessengerVo> deleteUser(@RequestBody Map<?, ?> paramap) {
+    @GetMapping("/delete-user")
+    public ResponseEntity<Messenger> deleteUser(@RequestBody Map<?, ?> paramap) {
 
-        return ResponseEntity.ok(new MessengerVo());
+        return ResponseEntity.ok(new Messenger());
     }
 
 
-    @GetMapping("/api/all-users")
-    public ResponseEntity<MessengerVo> getUserList() {
+    @GetMapping("/get-user-list")
+    public ResponseEntity<Messenger> getUserList() {
 
-        return ResponseEntity.ok(new MessengerVo());
+        return ResponseEntity.ok(new Messenger());
     }
 
    
-    @GetMapping("/api/all-users")
-    public ResponseEntity<MessengerVo> findUserByName(@RequestBody Map<?, ?> paramap) {
-        return ResponseEntity.ok(new MessengerVo());
+    @GetMapping("/find-user-by-name")
+    public ResponseEntity<Messenger> findUserByName(@RequestBody Map<?, ?> paramap) {
+        return ResponseEntity.ok(new Messenger());
 
     }
 
 
-    @GetMapping("/api/all-users")
-    public ResponseEntity<MessengerVo> findUserByJob(@RequestBody Map<?, ?> paramap) {
-        return ResponseEntity.ok(new MessengerVo());
+    @GetMapping("/find-user-by-job")
+    public ResponseEntity<Messenger> findUserByJob(@RequestBody Map<?, ?> paramap) {
+        return ResponseEntity.ok(new Messenger());
     }
 
 
-    @GetMapping("/api/all-users")
-    public ResponseEntity<MessengerVo> countUser() {
-        return ResponseEntity.ok(new MessengerVo());
+    @GetMapping("/count-users")
+    public ResponseEntity<Messenger> countUser() {
+        return ResponseEntity.ok(new Messenger());
 
     }
 
-    @GetMapping("/api/all-users")
-    public ResponseEntity<MessengerVo> getOne(@RequestBody Map<?, ?> paramap) throws SQLException {
-        return ResponseEntity.ok(new MessengerVo());
+    @GetMapping("/get-one")
+    public ResponseEntity<Messenger> getOne(@RequestBody Map<?, ?> paramap) throws SQLException {
+        return ResponseEntity.ok(new Messenger());
     }
 
 
-    @GetMapping("/api/all-users")
-    public ResponseEntity<MessengerVo> findUsers() throws SQLException {
+    @GetMapping("/find-users")
+    public ResponseEntity<Messenger> findUsers() throws SQLException {
 
-        return ResponseEntity.ok(new MessengerVo());
+        return ResponseEntity.ok(new Messenger());
     }
 
 
-    @GetMapping("/api/all-users")
-    public ResponseEntity<MessengerVo> getUser(@RequestBody Map<?, ?> paramap) throws SQLException {
+    @GetMapping("/get-user")
+    public ResponseEntity<Messenger> getUser(@RequestBody Map<?, ?> paramap) throws SQLException {
 
-        return ResponseEntity.ok(new MessengerVo());
+        return ResponseEntity.ok(new Messenger());
     }
 
 
-    @GetMapping("/api/all-users")
-    public ResponseEntity<MessengerVo> touchTable() throws SQLException {
-        return ResponseEntity.ok(new MessengerVo());
+    @GetMapping("/touch-table")
+    public ResponseEntity<Messenger> touchTable() throws SQLException {
+        return ResponseEntity.ok(new Messenger());
     }
 
 
-    @GetMapping("/api/all-users")
-    public ResponseEntity<MessengerVo> removeTable() throws SQLException {
-        return ResponseEntity.ok(new MessengerVo());
+    @GetMapping("/remove-table")
+    public ResponseEntity<Messenger> removeTable() throws SQLException {
+        return ResponseEntity.ok(new Messenger());
     }
 
 }
