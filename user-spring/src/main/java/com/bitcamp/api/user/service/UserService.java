@@ -3,6 +3,7 @@ package com.bitcamp.api.user.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.bitcamp.api.common.component.Messenger;
 import com.bitcamp.api.common.service.CommandService;
 import com.bitcamp.api.common.service.QueryService;
 import com.bitcamp.api.user.model.User;
@@ -10,9 +11,10 @@ import com.bitcamp.api.user.model.UserDto;
 
 
 public interface UserService extends CommandService<UserDto>, QueryService<UserDto>{
-    String updatePassword(User user);
-    List<?> findUsersByName(String name);
-    List<?> findUsersByJob(String job);
+    Messenger modify(UserDto user);
+    List<UserDto> findUsersByName(String name);
+    List<UserDto> findUsersByJob(String job);
+    Optional<User> findUserByUsername(String username);
 
     default User dtoToEntity(UserDto dto){
         return User.builder()
@@ -33,6 +35,7 @@ public interface UserService extends CommandService<UserDto>, QueryService<UserD
                         .job(user.getJob())
                         .build();
     }
+    Messenger login(UserDto param);
 
 
     // default UserDto entityToDto(Optional<User> optional){

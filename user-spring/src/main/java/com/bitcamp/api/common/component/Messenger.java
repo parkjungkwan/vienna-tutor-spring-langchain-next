@@ -10,7 +10,6 @@ import lombok.Setter;
 
 @Component
 @Getter
-@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
