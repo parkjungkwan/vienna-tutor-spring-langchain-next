@@ -1,14 +1,11 @@
 package com.bitcamp.api.board.service;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 import com.bitcamp.api.board.model.BoardDto;
 import com.bitcamp.api.board.repository.BoardRepository;
 import com.bitcamp.api.common.component.Messenger;
-import com.bitcamp.api.common.component.PageRequestVo;
 
 import lombok.RequiredArgsConstructor;
 @Service

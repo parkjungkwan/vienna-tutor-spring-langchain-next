@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -23,6 +25,7 @@ import lombok.extern.log4j.Log4j2;
 @RestController
 @RequiredArgsConstructor
 @Log4j2
+@RequestMapping("/api/boards")
 public class BoardController {
 
     private final BoardServiceImpl service;
@@ -38,7 +41,7 @@ public class BoardController {
         log.info("입력받은 정보 : {}" , id);
         return ResponseEntity.ok(service.deleteById(id));
     }
-    @GetMapping("list")
+    @GetMapping("/list")
     public ResponseEntity<List<BoardDto>> findAll(PageRequestVo vo) throws SQLException {
         log.info("입력받은 정보 : {}" );
         return ResponseEntity.ok(service.findAll());

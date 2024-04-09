@@ -6,40 +6,38 @@ import { useState, useEffect } from "react"
 import {Box, Button, Input} from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux'
 import { NextPage } from "next";
-import { fetchAllArticles } from "@/app/components/articles/service/article-service";
-import { getAllArticles } from "@/app/components/articles/service/article-slice";
-import Columns from "@/app/components/articles/module/article-columns";
+import { findAllBoards } from "@/app/components/board/service/board-service";
+import { getAllBoards } from "@/app/components/board/service/board-slice";
+import Columns from "@/app/components/board/module/columns";
 // import React from "react";
-
-
 
 
 const BoardListPage: NextPage = ({data}:any) => {
     const dispatch = useDispatch()
  
-   const allArticles: [] = useSelector(getAllArticles)
+   const allBoards: [] = useSelector(getAllBoards)
 
-    if(allArticles !== undefined){
-        console.log('allArticles is not undefined')
+    if(allBoards !== undefined){
+        console.log('allBoards is not undefined')
         
-        console.log('length is '+ allArticles.length)
-        for(let i=0; i< allArticles.length; i++){
-            console.log(JSON.stringify(allArticles[i]))
+        console.log('length is '+ allBoards.length)
+        for(let i=0; i< allBoards.length; i++){
+            console.log(JSON.stringify(allBoards[i]))
         }
     }else{
-        console.log('allArticles is undefined')
+        console.log('allBoards is undefined')
     }
     
 
     useEffect(() => {
-        dispatch(fetchAllArticles(1))
+        dispatch(findAllBoards(1))
     }, [])
     
     return (<>
         <h2>게시판 목록</h2>
         <Box sx={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={data}
+     {allBoards && <DataGrid
+        rows={allBoards}
         columns={Columns()}
         initialState={{
           pagination: {
@@ -51,7 +49,7 @@ const BoardListPage: NextPage = ({data}:any) => {
         pageSizeOptions={[5]}
         checkboxSelection
         disableRowSelectionOnClick
-      />
+      />}
     </Box>
     </>)
 }

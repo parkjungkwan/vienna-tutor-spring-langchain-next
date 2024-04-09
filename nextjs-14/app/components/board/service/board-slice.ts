@@ -14,7 +14,7 @@ const status = {
 }
 
 const handleFulfilled =  (state: any, {payload}: any) => {
-    console.log('------------------ conclusion ---------------')
+    console.log('------------------Board conclusion ---------------')
     state.array = payload
     console.log(state.array)
 

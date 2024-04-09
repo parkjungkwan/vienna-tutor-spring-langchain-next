@@ -1,10 +1,12 @@
-import { IArticle } from "../../articles/model/article";
+import { IArticle } from "../../article/model/article";
+
 
 export const initialState:IArticle = {
     id : 0,
     title : '',
     content : '',
-    registerDate : '',
+    regDate : '',
+    modDate : '',
     array: []
 
 

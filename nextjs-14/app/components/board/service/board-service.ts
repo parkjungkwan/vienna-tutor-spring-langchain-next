@@ -7,14 +7,5 @@ import AxiosConfig, { instance } from "@/app/components/common/configs/axios-con
 
 export const findAllBoards: any = createAsyncThunk(
     'boards/findAllBoards',
-    async (page: number)=>{
-        console.log('fetchAllBoards page : '+ page)
-        const data:any = await  findAllBoardsAPI(1);
-
-        const {message, result}:any = data
-        // console.log('----- API 를 사용한 경우 -----')
-        // console.log('message : '+ message)
-        // console.log(JSON.stringify(result))
-        return data
-    }
+    async (page: number)=> await  findAllBoardsAPI(page)
 )
