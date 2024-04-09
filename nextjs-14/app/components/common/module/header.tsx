@@ -35,6 +35,7 @@ function Header() {
       case "회원가입" : router.push("/pages/user/join"); break;
       case "로그인" : router.push("/pages/user/login"); break;
       case "카운터" : router.push("/pages/demo/counter"); break;
+      case "게시판목록" : router.push("/pages/board/list"); break;
       case "게시글목록" : router.push("/pages/article/list"); break;
       case "사용자목록" : router.push("/pages/user/list"); break;
     }

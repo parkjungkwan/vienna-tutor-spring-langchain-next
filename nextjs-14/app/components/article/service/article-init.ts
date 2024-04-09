@@ -4,8 +4,9 @@ export const initialState:IArticle = {
     id : 0,
     title : '',
     content : '',
-    registerDate : '',
+    writerId : 0,
+    boardId : 0,
+    regDate : '',
+    modDate : '',
     array: []
-
-
 }

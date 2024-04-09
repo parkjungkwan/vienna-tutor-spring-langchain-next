@@ -1,15 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { fetchAllUsersAPI } from "./user-api";
-import axios from "axios";
-import { API } from "@/app/components/common/enums/API";
-import AxiosConfig, { instance } from "@/app/components/common/configs/axios-config";
+import { findAllUsersAPI } from "./user-api";
 
-export const fetchAllUsers: any = createAsyncThunk(
-    'users/fetchAllUsers',
+export const findAllUsers: any = createAsyncThunk(
+    'users/findAllUsers',
     async (page: number)=>{
-        console.log('fetchAllUsers page : '+ page)
-        const data:any = await  fetchAllUsersAPI(1);
+        console.log('findAllUsers page : '+ page)
+        const data:any = await  findAllUsersAPI(1);
 
         const {message, result}:any = data
         console.log('----- API 를 사용한 경우 -----')
