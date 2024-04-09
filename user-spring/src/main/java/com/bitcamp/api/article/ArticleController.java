@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bitcamp.api.article.model.ArticleDto;
@@ -22,6 +24,7 @@ import com.bitcamp.api.common.component.PageRequestVo;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -31,44 +34,39 @@ import lombok.extern.slf4j.Slf4j;
     @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
     @ApiResponse(responseCode = "404", description = "Customer not found")})
 @RequestMapping("/api/articles")
+@Log4j2
 public class ArticleController {
 
     private final ArticleServiceImpl service;
 
 
-    @PostMapping("")
+    @PostMapping("/save")
     public ResponseEntity<Messenger> save(ArticleDto dto) throws SQLException {
-        ArticleDto newDto = service.save(dto);
-        Messenger messenger = (newDto.getId()!= 0L) 
-        ? Messenger.builder().build()
-        : Messenger.builder().build();
-
-
-        return ResponseEntity.ok(messenger);
+        log.info("입력받은 정보 : ", dto);
+        return ResponseEntity.ok(service.save(dto));
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete")
     public ResponseEntity<Messenger> deleteById(@PathVariable long id) throws SQLException {
-        service.deleteById(0L);
-        return ResponseEntity.ok(new Messenger());
+        log.info("입력받은 정보 : ", id);
+        return ResponseEntity.ok(service.deleteById(id));
     }
-    @GetMapping("")
-    public ResponseEntity<Messenger> findAll(PageRequestVo vo) throws SQLException {
-        service.findAll(null);
-        return ResponseEntity.ok(new Messenger());
+    @GetMapping("/list")
+    public ResponseEntity<List<ArticleDto>> findAll(PageRequestVo vo) throws SQLException {
+        log.info("입력받은 정보 : {}");
+        return ResponseEntity.ok(service.findAll());
     }
-    @GetMapping("/{id}")
-    public ResponseEntity<Messenger> findById(PageRequestVo vo) throws SQLException {
-        service.findById(0L);
-        return ResponseEntity.ok(new Messenger());
+    @GetMapping("/detail")
+    public ResponseEntity<Messenger> findById(@RequestParam Long id) throws SQLException {
+        log.info("입력받은 정보 : {}",id);
+        return ResponseEntity.ok(service.deleteById(id));
     }
     @GetMapping("/count")
-    public ResponseEntity<Messenger> count(PageRequestVo vo) throws SQLException {
-        service.count();
-        return ResponseEntity.ok(new Messenger());
+    public ResponseEntity<Long> count(PageRequestVo vo) throws SQLException {
+        log.info("입력받은 정보 : {}");
+        return ResponseEntity.ok(service.count());
     }
     @GetMapping("/exists/{id}")
-    public ResponseEntity<Messenger> existsById(@PathVariable long id) throws SQLException {
-        service.existsById(0L);
-        return ResponseEntity.ok(new Messenger());
+    public ResponseEntity<Boolean> existsById(@PathVariable long id) throws SQLException {
+        return ResponseEntity.ok(service.existsById(id));
     }
 }

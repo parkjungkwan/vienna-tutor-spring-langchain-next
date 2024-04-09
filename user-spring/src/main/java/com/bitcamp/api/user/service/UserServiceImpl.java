@@ -38,9 +38,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> findAll() {
-        repository.findAll();
-        return new ArrayList<>();
+    public List<UserDto> findAll() { 
+        return repository.findAll().stream().map(i->entityToDto(i)).toList();
     }
 
     @Override

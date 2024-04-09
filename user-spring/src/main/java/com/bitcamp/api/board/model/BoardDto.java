@@ -13,10 +13,11 @@ import java.util.*;
 @NoArgsConstructor
 public class BoardDto {
 
-    private Long id;
-    private String title;
-    private String content;
-    private String registerDate;
+    private long id;
+    private String boardName;
+    private String boardType;
+    private String regDate;
+    private String modDate;
     private List<Article> articles;
     
 }

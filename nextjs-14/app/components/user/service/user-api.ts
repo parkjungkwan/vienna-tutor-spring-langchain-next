@@ -1,8 +1,8 @@
 import { instance } from '@/app/components/common/configs/axios-config'
 
-export const fetchAllUsersAPI = async (page: number) =>{
+export const findAllUsersAPI = async (page: number) =>{
     try{
-        const response = await instance.get('/all-users',{
+        const response = await instance.get('/users',{
             params: {page, limit: 10}
         })
         return response.data

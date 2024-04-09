@@ -27,6 +27,8 @@ public class User extends BaseEntity{
     private String phone;
     private Long addressId;
     private String job;
+    private String email;
+    
 
 
     @OneToMany(mappedBy = "writer", fetch = FetchType.LAZY)

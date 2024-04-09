@@ -17,6 +17,9 @@ public class UserDto {
     private String phone;
     private Long addressId;
     private String job;
+    private String email;
+    private String regDate;
+    private String modDate;
 
     
 }

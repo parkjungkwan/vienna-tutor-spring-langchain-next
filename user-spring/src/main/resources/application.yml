@@ -1,7 +1,10 @@
 spring:
   application:
     name: api
-
+  sql:
+    init:
+      platform: mysql
+      mode: always
   jpa:
     hibernate:
       ddl-auto: create
@@ -13,6 +16,7 @@ spring:
             '[non_contextual_creation]': true
         '[format_sql]': true
     show-sql: true
+    defer-datasource-initialization: true
 logging:
   level:
     org:

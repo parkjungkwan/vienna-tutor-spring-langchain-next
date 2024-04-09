@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { createSlice } from "@reduxjs/toolkit";
-import { IUser } from '../model/user-model';
+import { IUser } from '../model/user';
 import { initialState } from './user-init';
 import { fetchAllUsers } from './user-service';
 

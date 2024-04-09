@@ -83,6 +83,9 @@ public class UserController {
        log.info("입력받은 정보 : {}", param );
         return ResponseEntity.ok(service.login(param));
     }
-
+    @GetMapping("/exists/{id}")
+    public ResponseEntity<Boolean> existsById(@PathVariable long id) {
+        return ResponseEntity.ok(service.existsById(id));
+    }
 
 }

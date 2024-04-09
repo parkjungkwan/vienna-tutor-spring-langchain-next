@@ -1,11 +1,13 @@
 package com.bitcamp.api.board.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 import com.bitcamp.api.board.model.BoardDto;
 import com.bitcamp.api.board.repository.BoardRepository;
+import com.bitcamp.api.common.component.Messenger;
 import com.bitcamp.api.common.component.PageRequestVo;
 
 import lombok.RequiredArgsConstructor;
@@ -16,24 +18,21 @@ public class BoardServiceImpl implements BoardService{
     private final BoardRepository repository;
 
     @Override
-    public BoardDto save(BoardDto t) {
-        return entityToDto(Optional.of(repository.save(dtoToEntity(t))));
+    public Messenger save(BoardDto t) {
+        entityToDto(repository.save(dtoToEntity(t)));
+        return new Messenger();
     }
 
     @Override
-    public void deleteById(Long id) {
+    public Messenger deleteById(Long id) {
         repository.deleteById(id);
-    }
-
-    @Override
-    public List<BoardDto> findAll(PageRequestVo vo) {
-        //return repository.findAll(vo);
-        return null;
+        return new Messenger();
     }
 
     @Override
     public Optional<BoardDto> findById(Long id) {
-        return Optional.of(entityToDto(repository.findById(id)));
+        //return Optional.of(entityToDto(repository.findById(id)));
+        return null;
     }
 
     @Override
@@ -45,6 +44,18 @@ public class BoardServiceImpl implements BoardService{
     public boolean existsById(Long id) {
         return repository.existsById(id);
     }
+
+    @Override
+    public Messenger modify(BoardDto t) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'modify'");
+    }
+
+    @Override
+    public List<BoardDto> findAll() {
+        return repository.findAll().stream().map(i->entityToDto(i)).toList();
+    }
+
 
    
     
