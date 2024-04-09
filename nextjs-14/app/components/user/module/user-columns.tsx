@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import { UserColumn } from "../model/user-column";
+import { MyTypography } from "../../common/style/cell";
 
 
 interface CellType{
@@ -17,7 +18,7 @@ export default function UserColumns(): GridColDef[]{
             sortable: false,
             field: 'id',
             headerName: 'No.',
-            renderCell: ({row}:CellType) =>  <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {row.id}</Typography>
+            renderCell: ({row}:CellType) =>  MyTypography(row.id, "1.2rem")
             }
         ,
         {
@@ -26,7 +27,7 @@ export default function UserColumns(): GridColDef[]{
             sortable: false,
             field: 'username',
             headerName: '이름',
-            renderCell: ({row}:CellType) =>  <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {row.username}</Typography>
+            renderCell: ({row}:CellType) =>   MyTypography(row.username, "1.2rem")
         },
         {
             flex: 0.04,
@@ -34,7 +35,7 @@ export default function UserColumns(): GridColDef[]{
             sortable: false,
             field: 'password',
             headerName: '비밀번호',
-            renderCell: ({row}:CellType) =>  <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {row.password}</Typography>
+            renderCell: ({row}:CellType) =>   MyTypography(row.password, "1.2rem")
         },
         {
             flex: 0.04,
@@ -42,7 +43,7 @@ export default function UserColumns(): GridColDef[]{
             sortable: false,
             field: 'name',
             headerName: '이름',
-            renderCell: ({row}:CellType) =>  <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {row.name}</Typography>
+            renderCell: ({row}:CellType) =>   MyTypography(row.name, "1.2rem")
         },
         {
             flex: 0.04,
@@ -50,7 +51,7 @@ export default function UserColumns(): GridColDef[]{
             sortable: false,
             field: 'phone',
             headerName: '전화번호',
-            renderCell: ({row}:CellType) =>  <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {row.phone}</Typography>
+            renderCell: ({row}:CellType) =>   MyTypography(row.phone, "1.2rem")
         },
         {
             flex: 0.04,
@@ -58,7 +59,7 @@ export default function UserColumns(): GridColDef[]{
             sortable: false,
             field: 'job',
             headerName: '직업',
-            renderCell: ({row}:CellType) =>  <Typography textAlign="center" sx={{fontSize:"1.5rem"}}>  {row.job}</Typography>
+            renderCell: ({row}:CellType) =>   MyTypography(row.job, "1.2rem")
         },
     ]
 

@@ -9,6 +9,7 @@ import { NextPage } from "next";
 import { findAllArticles } from "@/app/components/article/service/article-service";
 import { getAllArticles } from "@/app/components/article/service/article-slice";
 import Columns from "@/app/components/article/module/columns";
+import { StripedDataGrid } from "@/app/components/common/style/board";
 // import React from "react";
 
 
@@ -17,7 +18,7 @@ import Columns from "@/app/components/article/module/columns";
 const ArticleListPage: NextPage = ({data}:any) => {
     const dispatch = useDispatch()
  
-   const allArticles: [] = useSelector(getAllArticles)
+    const allArticles: [] = useSelector(getAllArticles)
 
     if(allArticles !== undefined){
         console.log('allArticles is not undefined')
@@ -38,7 +39,7 @@ const ArticleListPage: NextPage = ({data}:any) => {
     return (<>
         <h2>게시글 목록</h2>
         <Box sx={{ height: 400, width: '100%' }}>
-     {allArticles && <DataGrid
+     {allArticles && <StripedDataGrid
         rows={allArticles}
         columns={Columns()}
         initialState={{

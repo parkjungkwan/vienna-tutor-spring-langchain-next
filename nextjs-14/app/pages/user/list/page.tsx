@@ -14,6 +14,7 @@ import { NextPage } from "next";
 import { findAllUsers } from "@/app/components/user/service/user-service";
 import { getAllUsers } from "@/app/components/user/service/user-slice";
 import UserColumns from "@/app/components/user/module/user-columns";
+import { StripedDataGrid } from "@/app/components/common/style/board";
 // import React from "react";
 
 interface IArticle {
@@ -49,7 +50,7 @@ const UsersPage: NextPage = () => {
 
     return (<>
         <h2>사용자 목록</h2>``
-        <div style={{ height: 400, width: "100%" }}>
+        <div style={{ height: "100%", width: "100%" }}>
       {allUsers && <DataGrid // 🔥 4
         rows={allUsers}
         columns={UserColumns()}

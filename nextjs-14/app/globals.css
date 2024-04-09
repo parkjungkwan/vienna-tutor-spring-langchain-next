@@ -7,3 +7,7 @@
     .margincenter {@apply mx-auto my-0}
     .flexwrap {@apply flex flex-wrap}
 }
+.MuiDataGrid-cell {
+    border-right : solid 1px black;
+    border-bottom : solid 1px black;
+}

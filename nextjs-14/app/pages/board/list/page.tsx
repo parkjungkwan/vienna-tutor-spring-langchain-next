@@ -3,12 +3,13 @@
 import { useRouter } from "next/navigation"
 import { DataGrid } from '@mui/x-data-grid';
 import { useState, useEffect } from "react"
-import {Box, Button, Input} from '@mui/material';
+import {Box, Button, Input, styled} from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux'
 import { NextPage } from "next";
 import { findAllBoards } from "@/app/components/board/service/board-service";
 import { getAllBoards } from "@/app/components/board/service/board-slice";
 import Columns from "@/app/components/board/module/columns";
+import { StripedDataGrid } from "@/app/components/common/style/board";
 // import React from "react";
 
 
@@ -36,7 +37,7 @@ const BoardListPage: NextPage = ({data}:any) => {
     return (<>
         <h2>게시판 목록</h2>
         <Box sx={{ height: 400, width: '100%' }}>
-     {allBoards && <DataGrid
+     {allBoards && <StripedDataGrid
         rows={allBoards}
         columns={Columns()}
         initialState={{
