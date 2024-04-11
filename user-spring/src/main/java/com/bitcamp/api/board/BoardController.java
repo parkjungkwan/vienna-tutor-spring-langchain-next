@@ -8,6 +8,8 @@ import com.bitcamp.api.board.service.BoardServiceImpl;
 import com.bitcamp.api.common.component.Messenger;
 import com.bitcamp.api.common.component.PageRequestVo;
 
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -32,12 +35,12 @@ public class BoardController {
 
 
     @PostMapping("/save")
-    public ResponseEntity<Messenger> save(BoardDto dto) throws SQLException {
+    public ResponseEntity<Messenger> save(@RequestBody BoardDto dto) throws SQLException {
         log.info("입력받은 정보 : {}", dto );
         return ResponseEntity.ok(service.save(dto));
     }
     @DeleteMapping("/delete")
-    public ResponseEntity<Messenger> deleteById(@PathVariable long id) throws SQLException {
+    public ResponseEntity<Messenger> deleteById(@RequestParam long id) throws SQLException {
         log.info("입력받은 정보 : {}" , id);
         return ResponseEntity.ok(service.deleteById(id));
     }
@@ -46,18 +49,18 @@ public class BoardController {
         log.info("입력받은 정보 : {}" );
         return ResponseEntity.ok(service.findAll());
     }
-    @GetMapping("/{id}")
-    public ResponseEntity<Messenger> findById(PageRequestVo vo) throws SQLException {
+    @GetMapping("/detail")
+    public ResponseEntity<Messenger> findById(@RequestParam long id) throws SQLException {
         service.findById(0L);
         return ResponseEntity.ok(new Messenger());
     }
     @GetMapping("/count")
-    public ResponseEntity<Messenger> count(PageRequestVo vo) throws SQLException {
+    public ResponseEntity<Messenger> count() throws SQLException {
         service.count();
         return ResponseEntity.ok(new Messenger());
     }
-    @GetMapping("/exists/{id}")
-    public ResponseEntity<Messenger> existsById(@PathVariable long id) throws SQLException {
+    @GetMapping("/exists")
+    public ResponseEntity<Messenger> existsById(@RequestParam long id) throws SQLException {
         service.existsById(0L);
         return ResponseEntity.ok(new Messenger());
     }

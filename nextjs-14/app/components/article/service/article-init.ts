@@ -8,5 +8,6 @@ export const initialState:IArticle = {
     boardId : 0,
     regDate : '',
     modDate : '',
+    json: {},
     array: []
 }

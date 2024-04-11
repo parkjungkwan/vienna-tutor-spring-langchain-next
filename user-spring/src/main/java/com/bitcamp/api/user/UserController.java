@@ -1,6 +1,7 @@
 package com.bitcamp.api.user;
 import com.bitcamp.api.article.model.ArticleDto;
 import com.bitcamp.api.common.component.Messenger;
+import com.bitcamp.api.common.component.PageRequestVo;
 import com.bitcamp.api.common.component.PageResultVo;
 import com.bitcamp.api.common.proxy.TypeProxy;
 import com.bitcamp.api.user.model.User;
@@ -39,7 +40,7 @@ public class UserController {
 
 
     @GetMapping("/list")
-    public ResponseEntity<List<UserDto>> findAll(){
+    public ResponseEntity<List<UserDto>> findAll(PageRequestVo vo){
         log.info("입력받은 정보 : {}" );
         return ResponseEntity.ok(service.findAll());
     }

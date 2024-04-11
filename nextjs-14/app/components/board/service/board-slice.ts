@@ -3,21 +3,15 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { createSlice } from "@reduxjs/toolkit";
 import { IBoard } from '../model/board';
 import { initialState } from './board-init';
-import { findAllBoards } from './board-service';
+import { findAllBoards, findBoardById } from './board-service';
+import { stat } from 'fs';
 
-const boardThunks = [findAllBoards]
+const boardThunks = [findAllBoards,findBoardById]
 
 const status = {
     pending: 'pending',
     fulfilled: 'fulfilled',
     rejected: 'rejected'
-}
-
-const handleFulfilled =  (state: any, {payload}: any) => {
-    console.log('------------------Board conclusion ---------------')
-    state.array = payload
-    console.log(state.array)
-
 }
 
 const handlePending = (state: any) => {
@@ -35,15 +29,14 @@ export const boardSlice = createSlice({
         const {pending, rejected} = status;
 
         builder
-        .addCase(findAllBoards.fulfilled, handleFulfilled)
+        .addCase(findAllBoards.fulfilled, (state: any, {payload}: any) =>{state.array=payload})
+        .addCase(findBoardById.fulfilled, (state: any, {payload}: any) =>{state.json=payload})
+
   
     }
 })
-export const getAllBoards = (state: any) => {
-    console.log('------------------ Before useSelector ---------------')
-    console.log(JSON.stringify(state.board.array))
-    return state.board.array;
-}
+export const getAllBoards = (state: any) =>(state.board.array);
+export const getBoardById = (state: any) =>(state.board.json);
 
 export const {} = boardSlice.actions
 

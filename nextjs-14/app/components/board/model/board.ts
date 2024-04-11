@@ -4,5 +4,6 @@ export interface IBoard{
     boardType? : string
     regDate? : string
     modDate? : string
-    array?: []
+    array?: IBoard[],
+    json?:IBoard
 }
