@@ -25,7 +25,6 @@ import java.util.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/api/users")
-@Slf4j
 public class UserController {
     private final UserService service;
 
@@ -33,7 +32,6 @@ public class UserController {
     @SuppressWarnings("static-access")
     @PostMapping( "/save")
     public ResponseEntity<Messenger> save(@RequestBody UserDto dto) {
-        log.info("입력받은 정보 : {}", dto );
         return ResponseEntity.ok(service.save(dto));
 
     }
@@ -41,14 +39,12 @@ public class UserController {
 
     @GetMapping("/list")
     public ResponseEntity<List<UserDto>> findAll(PageRequestVo vo){
-        log.info("입력받은 정보 : {}" );
         return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping("/detail")
 
     public ResponseEntity<Optional<UserDto>> findById(@RequestParam Long id) {
-        log.info("입력받은 정보 : {}", id );
         return ResponseEntity.ok(service.findById(id));
     }
 
@@ -56,36 +52,32 @@ public class UserController {
 
     @PutMapping("/modify")
     public ResponseEntity<Messenger> modify(@RequestBody UserDto param) {
-        log.info("입력받은 정보 : {}", param );
         return ResponseEntity.ok(service.modify(param));
     }
 
 
     @DeleteMapping("/delete")
     public ResponseEntity<Messenger> deleteById(@RequestParam Long id) {
-        log.info("입력받은 정보 : {}", id );
         return ResponseEntity.ok(service.deleteById(id));
     }
 
     @GetMapping("/count")
-    public ResponseEntity<Long> count() {
+    public ResponseEntity<Messenger> count() {
         return ResponseEntity.ok(service.count());
 
     }
 
     @PostMapping("/search")
     public ResponseEntity<List<UserDto>> findUsersByName(@RequestBody UserDto param) {
-        //log.info("입력받은 정보 : {}", name );
         return ResponseEntity.ok(service.findUsersByName(param.getName()));
     }
 
-    @PostMapping(path = "/login")
+    @PostMapping("/login")
     public ResponseEntity<Messenger> login(@RequestBody UserDto param) {
-       log.info("입력받은 정보 : {}", param );
         return ResponseEntity.ok(service.login(param));
     }
-    @GetMapping("/exists/{id}")
-    public ResponseEntity<Boolean> existsById(@PathVariable long id) {
+    @GetMapping("/exists")
+    public ResponseEntity<Boolean> existsById(@RequestParam long id) {
         return ResponseEntity.ok(service.existsById(id));
     }
 

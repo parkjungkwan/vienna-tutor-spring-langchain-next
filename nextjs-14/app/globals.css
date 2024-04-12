@@ -7,7 +7,13 @@
     .margincenter {@apply mx-auto my-0}
     .flexwrap {@apply flex flex-wrap}
 }
-.MuiDataGrid-cell {
-    border-right : solid 1px black;
-    border-bottom : solid 1px black;
-}
+.MuiDataGrid-cell {border-top : solid 0.25px black;
+    border-right : solid 0.25px black;
+    border-bottom : solid 0.25px black;}
+/* .css-qcqlck-MuiDataGrid-root {border : solid 0.25px black;}
+.MuiDataGrid-cell MuiDataGrid-cell--textLeft {border : solid 0.25px black;} */
+.MuiDataGrid-columnHeaderTitleContainer{border-bottom : solid 0.25px black; backgourd-color: gray}
+.MuiDataGrid-columnHeader MuiDataGrid-withBorderColor{border-bottom : solid 0.25px black;}
+.css-1essi2g-MuiDataGrid-columnHeaderRow{border-bottom : solid 0.25px black;}
+.MuiTableRow-root css-1q1u3t4-MuiTableRow-root{border-bottom : solid 0.25px black;}
+.Table-title{fontSize: '20px'; border: '1px solid black'; height: '70px'}

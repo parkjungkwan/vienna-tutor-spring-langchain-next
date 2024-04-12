@@ -3,13 +3,12 @@
 import { useRouter } from "next/navigation"
 import { DataGrid } from '@mui/x-data-grid';
 import { useState, useEffect } from "react"
-import {Box, Button, Input} from '@mui/material';
+import {Box, Button, Input, Table} from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux'
 import { NextPage } from "next";
 import { findAllArticles } from "@/app/components/article/service/article-service";
 import { getAllArticles } from "@/app/components/article/service/article-slice";
 import Columns from "@/app/components/article/module/columns";
-import { StripedDataGrid } from "@/app/components/common/style/board";
 // import React from "react";
 
 
@@ -24,9 +23,22 @@ const ArticleListPage: NextPage = ({data}:any) => {
     }, [])
     
     return (<>
-        <h2>게시글 목록</h2>
-        <Box sx={{ height: 400, width: '100%' }}>
-     {allArticles && <StripedDataGrid
+     <table  className="table-auto w-4/5 border-x-black" style={{margin: '50px auto'}}>
+        <thead>
+          <tr>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td 
+        align="center" className="w-full  bg-gray-400 border-black border-4 p-8 h-20 text-[20px]" 
+        >
+       게시글 목록
+        </td>
+    </tr>
+    <tr>
+        <td align="center"  className="h-300">
+     {allArticles && <DataGrid
         rows={allArticles}
         columns={Columns()}
         initialState={{
@@ -40,7 +52,11 @@ const ArticleListPage: NextPage = ({data}:any) => {
         checkboxSelection
         disableRowSelectionOnClick
       />}
-    </Box>
+    </td>
+    </tr>
+       
+        </tbody>
+      </table>
     </>)
 }
 

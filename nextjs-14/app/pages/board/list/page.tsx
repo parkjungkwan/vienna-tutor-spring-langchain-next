@@ -35,9 +35,22 @@ const BoardListPage: NextPage = ({data}:any) => {
     }, [])
     
     return (<>
-        <h2>게시판 목록</h2>
-        <Box sx={{ height: 400, width: '100%' }}>
-     {allBoards && <StripedDataGrid
+         <table  className="table-auto w-4/5 border-x-black" style={{margin: '50px auto'}}>
+        <thead>
+          <tr>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td 
+        align="center" className="w-full  bg-gray-400 border-black border-4 p-8 h-20 text-[20px]" 
+        >
+       게시판 목록
+        </td>
+    </tr>
+    <tr>
+        <td align="center"  className="h-300">
+     {allBoards && <DataGrid
         rows={allBoards}
         columns={Columns()}
         initialState={{
@@ -51,7 +64,11 @@ const BoardListPage: NextPage = ({data}:any) => {
         checkboxSelection
         disableRowSelectionOnClick
       />}
-    </Box>
+     </td>
+    </tr>
+       
+        </tbody>
+      </table>
     </>)
 }
 

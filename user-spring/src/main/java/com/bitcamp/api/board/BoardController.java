@@ -16,7 +16,6 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,23 +35,20 @@ public class BoardController {
 
     @PostMapping("/save")
     public ResponseEntity<Messenger> save(@RequestBody BoardDto dto) throws SQLException {
-        log.info("입력받은 정보 : {}", dto );
         return ResponseEntity.ok(service.save(dto));
     }
     @DeleteMapping("/delete")
     public ResponseEntity<Messenger> deleteById(@RequestParam long id) throws SQLException {
-        log.info("입력받은 정보 : {}" , id);
         return ResponseEntity.ok(service.deleteById(id));
     }
     @GetMapping("/list")
     public ResponseEntity<List<BoardDto>> findAll(PageRequestVo vo) throws SQLException {
-        log.info("입력받은 정보 : {}" );
+        log.info("게시판 목록 : ");
         return ResponseEntity.ok(service.findAll());
     }
     @GetMapping("/detail")
-    public ResponseEntity<Messenger> findById(@RequestParam long id) throws SQLException {
-        service.findById(0L);
-        return ResponseEntity.ok(new Messenger());
+    public ResponseEntity<BoardDto> findById(@RequestParam long id) throws SQLException {
+        return ResponseEntity.ok(service.findById(id).orElseGet(BoardDto::new));
     }
     @GetMapping("/count")
     public ResponseEntity<Messenger> count() throws SQLException {
@@ -60,9 +56,8 @@ public class BoardController {
         return ResponseEntity.ok(new Messenger());
     }
     @GetMapping("/exists")
-    public ResponseEntity<Messenger> existsById(@RequestParam long id) throws SQLException {
-        service.existsById(0L);
-        return ResponseEntity.ok(new Messenger());
+    public ResponseEntity<Boolean> existsById(@RequestParam long id) throws SQLException {
+        return ResponseEntity.ok(service.existsById(id));
     }
     
 }

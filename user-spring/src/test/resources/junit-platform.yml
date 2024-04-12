@@ -1,0 +1,12 @@
+junit:
+  jupiter:
+    execution:
+      parallel:
+        enable: true
+        mode:
+          default: same_thread
+          classes:
+            default: same_thread
+        config:
+          dynamic:
+            factor: 3

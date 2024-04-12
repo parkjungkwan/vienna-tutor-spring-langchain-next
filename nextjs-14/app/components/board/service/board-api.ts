@@ -15,8 +15,8 @@ export const findAllBoardsAPI = async (page: number) =>{
 }
 export const findBoardByIdAPI = async (id: number) =>{
     try{
-        const response = await instance.get(`/boards/${id}`)
-        console.log(' 게시판 리턴 ...')
+        const response = await instance.get(`/boards/detail`,{params: {id}})
+        console.log(' 게시판 ID 리턴 ...'+`${JSON.stringify(response.data)}`)
         return response.data
     }catch(error){
         console.log(error)

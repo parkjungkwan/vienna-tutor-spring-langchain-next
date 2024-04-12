@@ -10,7 +10,6 @@ import lombok.*;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@ToString(exclude = {"id"})
 @Entity(name = "boards")
 public class Board extends BaseEntity{
 
@@ -21,7 +20,7 @@ public class Board extends BaseEntity{
     private String boardName;
     private String boardType;
 
-    @OneToMany(mappedBy = "board")
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Article> articles;
 
     @Builder(builderMethodName = "builder")

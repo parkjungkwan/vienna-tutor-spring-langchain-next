@@ -4,14 +4,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
 
 import com.bitcamp.api.article.model.Article;
 import com.bitcamp.api.article.model.ArticleDto;
 import com.bitcamp.api.article.repository.ArticleRepository;
 import com.bitcamp.api.common.component.Messenger;
-import com.bitcamp.api.common.component.PageRequestVo;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,15 +21,27 @@ public class ArticleServiceImpl implements ArticleService{
     private final ArticleRepository repository;
 
     @Override
-    public Messenger save(ArticleDto t) {
-        entityToDto(repository.save(dtoToEntity(t)));
-        return new Messenger();
+    public Messenger save(ArticleDto dto) {
+        Article ent = repository.save(dtoToEntity(dto));
+        System.out.println(" ============ BoardServiceImpl save instanceof =========== ");
+        System.out.println((ent instanceof Article) ? "SUCCESS" : "FAILURE");
+        return Messenger.builder()
+        .message((ent instanceof Article) ? "SUCCESS" : "FAILURE")
+        .build();
     }
 
     @Override
     public Messenger deleteById(Long id) {
-        repository.deleteById(id);
-        return new Messenger();
+        return Messenger.builder()
+        .message(
+            Stream.of(id)
+            .filter(i -> existsById(i))
+            .peek(i -> repository.deleteById(i))
+            .map(i -> "SUCCESS")
+            .findAny()
+            .orElseGet(() -> "FAILURE")
+        )
+        .build();
     }
 
     @Override
@@ -40,13 +51,14 @@ public class ArticleServiceImpl implements ArticleService{
 
     @Override
     public Optional<ArticleDto> findById(Long id) {
-        //return Optional.of(entityToDto(repository.findById(id)));
-        return null;
+        return repository.findById(id).map(i -> entityToDto(i));
     }
 
     @Override
-    public long count() {
-        return repository.count();
+    public Messenger count() {
+        return Messenger.builder()
+        .message(repository.count()+"")
+        .build();
     }
 
     @Override
@@ -55,9 +67,13 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
-    public Messenger modify(ArticleDto t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'modify'");
+    public Messenger modify(ArticleDto dto) {
+        Article ent = repository.save(dtoToEntity(dto));
+        System.out.println(" ============ BoardServiceImpl modify instanceof =========== ");
+        System.out.println((ent instanceof Article) ? "SUCCESS" : "FAILURE");
+        return Messenger.builder()
+        .message((ent instanceof Article) ? "SUCCESS" : "FAILURE")
+        .build();
     }
 
 

@@ -23,7 +23,6 @@ import lombok.extern.log4j.Log4j2;
 @Getter
 @Builder
 @AllArgsConstructor
-@ToString(exclude = {"id"})
 @Entity(name = "articles")
 public class Article extends BaseEntity{
 

@@ -14,7 +14,6 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @Setter
-@ToString(exclude = {"id"})
 public class User extends BaseEntity{
     @Id
     @Column(name = "user_id", nullable = false)
@@ -31,7 +30,7 @@ public class User extends BaseEntity{
     
 
 
-    @OneToMany(mappedBy = "writer", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "writer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Article> articles;
 
     @Override

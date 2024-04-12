@@ -44,27 +44,22 @@ public class ArticleController {
 
     @PostMapping("/save")
     public ResponseEntity<Messenger> save(@RequestBody ArticleDto dto) throws SQLException {
-        log.info("입력받은 정보 : ", dto);
         return ResponseEntity.ok(service.save(dto));
     }
     @DeleteMapping("/delete")
     public ResponseEntity<Messenger> deleteById(@RequestParam long id) throws SQLException {
-        log.info("입력받은 정보 : ", id);
         return ResponseEntity.ok(service.deleteById(id));
     }
     @GetMapping("/list")
     public ResponseEntity<List<ArticleDto>> findAll(PageRequestVo vo) throws SQLException {
-        log.info("입력받은 정보 : {}");
         return ResponseEntity.ok(service.findAll());
     }
     @GetMapping("/detail")
     public ResponseEntity<Messenger> findById(@RequestParam Long id) throws SQLException {
-        log.info("입력받은 정보 : {}",id);
         return ResponseEntity.ok(service.deleteById(id));
     }
     @GetMapping("/count")
-    public ResponseEntity<Long> count() throws SQLException {
-        log.info("입력받은 정보 : {}");
+    public ResponseEntity<Messenger> count() throws SQLException {
         return ResponseEntity.ok(service.count());
     }
     @GetMapping("/exists")

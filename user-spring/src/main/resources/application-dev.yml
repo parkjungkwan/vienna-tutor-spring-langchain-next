@@ -10,7 +10,7 @@ spring:
       mode: always
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
@@ -20,7 +20,6 @@ spring:
         '[format_sql]': true
     show-sql: true
     defer-datasource-initialization: true
-    open-in-view: false
   output:
     ansi:
       enabled: always

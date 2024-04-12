@@ -6,7 +6,11 @@ import axios from "axios"
 import { useRouter } from "next/navigation"
 import { DataGrid } from '@mui/x-data-grid';
 import { useState, useEffect } from "react"
-import {Box, Button, Input} from '@mui/material';
+import {
+    Box, Button, Container, Input, Table, TableBody, TableCell, TableContainer,
+    TableHead,
+    TableRow
+} from '@mui/material';
 import AxiosConfig from "@/app/components/common/configs/axios-config";
 import { API } from "@/app/components/common/enums/API";
 import { useSelector, useDispatch } from 'react-redux'
@@ -49,15 +53,32 @@ const UsersPage: NextPage = () => {
 
 
     return (<>
-        <h2>사용자 목록</h2>``
-        <div style={{ height: "100%", width: "100%" }}>
+      <table  className="h-1000 w-4/5 border-x-black" style={{margin: '50px auto'}}>
+        <thead>
+          <tr>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td 
+        align="center" className="w-full  bg-gray-400 border-black border-4 p-8 h-20 text-[20px]" 
+        >
+       사용자 목록
+        </td>
+    </tr>
+    <tr>
+        <td align="center"  className="h-300">
       {allUsers && <DataGrid // 🔥 4
         rows={allUsers}
         columns={UserColumns()}
         pageSizeOptions={[5, 10, 20]} // 4-1
         checkboxSelection
       />}
-    </div>
+    </td>
+    </tr>
+       
+        </tbody>
+      </table>
     </>)
 }
 

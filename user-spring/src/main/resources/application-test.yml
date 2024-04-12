@@ -1,7 +1,7 @@
 spring:
   config:
     activate:
-      on-profile: default
+      on-profile: test
   application:
     name: api
   sql:
@@ -10,7 +10,7 @@ spring:
       mode: always
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
@@ -20,7 +20,6 @@ spring:
         '[format_sql]': true
     show-sql: true
     defer-datasource-initialization: true
-    open-in-view: false
   output:
     ansi:
       enabled: always
@@ -31,3 +30,28 @@ logging:
       hibernate:
         SQL: debug
         type: trace
+
+---
+spring:
+  config.activate.on-profile: test
+  application:
+    name: api
+  sql:
+    init:
+      platform: mysql
+      mode: always
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        jdbc:
+          lob:
+            '[non_contextual_creation]': true
+        '[format_sql]': true
+    show-sql: true
+    defer-datasource-initialization: true
+  output:
+    ansi:
+      enabled: always

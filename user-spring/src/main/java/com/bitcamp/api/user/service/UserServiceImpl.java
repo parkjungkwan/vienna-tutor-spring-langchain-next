@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.sql.SQLException;
 import java.util.*;
-import lombok.RequiredArgsConstructor;
+import java.util.stream.Stream;
 
 import org.springdoc.core.converters.models.Pageable;
 import org.springframework.stereotype.Repository;
@@ -26,15 +26,21 @@ public class UserServiceImpl implements UserService {
     private final UserRepository repository;
 
     @Override
-    public Messenger save(UserDto t) {
-       entityToDto((repository.save(dtoToEntity(t))));
-       return new Messenger();
+    public Messenger save(UserDto dto) {
+        User ent = repository.save(dtoToEntity(dto));
+        System.out.println(" ============ UserServiceImpl save instanceof =========== ");
+        System.out.println((ent instanceof User) ? "SUCCESS" : "FAILURE");
+        return Messenger.builder()
+        .message((ent instanceof User) ? "SUCCESS" : "FAILURE")
+        .build();
     }
 
     @Override
     public Messenger deleteById(Long id) {
         repository.deleteById(id);
-        return new Messenger();
+        return Messenger.builder()
+        .message(repository.findById(id).isPresent() ? "SUCCESS" : "FAILURE")
+        .build();
     }
 
     @Override
@@ -44,13 +50,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<UserDto> findById(Long id) {
-        // Optional.of(entityToDto(repository.findById(id)));
-        return null;
+        return repository.findById(id).map(i -> entityToDto(i));
     }
 
     @Override
-    public long count() {
-        return repository.count();
+    public Messenger count() {
+        return Messenger.builder()
+        .message(repository.count()+"")
+        .build();
     }
 
     @Override
@@ -59,21 +66,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Messenger modify(UserDto user) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updatePassword'");
+    public Messenger modify(UserDto dto) {
+        User ent = repository.save(dtoToEntity(dto));
+        System.out.println(" ============ BoardServiceImpl modify instanceof =========== ");
+        System.out.println((ent instanceof User) ? "SUCCESS" : "FAILURE");
+        return Messenger.builder()
+        .message((ent instanceof User) ? "SUCCESS" : "FAILURE")
+        .build();
     }
 
     @Override
     public List<UserDto> findUsersByName(String name) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findUsersByName'");
+        return repository.findUsersByName(name).stream().map(i->entityToDto(i)).toList();
     }
 
     @Override
     public List<UserDto> findUsersByJob(String job) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findUsersByJob'");
+        return repository.findUsersByJob(job).stream().map(i->entityToDto(i)).toList();
     }
 
 
@@ -83,9 +92,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Messenger login(UserDto param) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'login'");
+    public Messenger login(UserDto dto) {
+        return Messenger.builder()
+        .message(
+            findUserByUsername(dto.getUsername()).stream()
+            .filter(i -> i.getPassword().equals(dto.getPassword()))
+            .map(i -> "SUCCESS")
+            .findAny()
+            .orElseGet(() -> "FAILURE")
+        )
+        .build();
     }
 
    
