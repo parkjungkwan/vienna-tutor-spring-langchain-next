@@ -1,40 +1,51 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios';
 import Link from "next/link";
-import { Button, Input } from "@mui/material";
-import { PG } from "./components/common/enums/PG";
+import { instance } from '@/app/components/common/configs/axios-config'
 import { API } from "./components/common/enums/API";
-
+import { useRouter } from "next/navigation";
+import AxiosConfig from "@/app/components/common/configs/axios-config";
+import { getMessage } from "./components/user/service/user-slice";
+import { login } from "./components/user/service/user-service";
+import { IUser } from "./components/user/model/user";
 
 
 export default function Home() {
-  const [name, setName] = useState('')
-  const handleChange = (e: any) => {
-    setName(e.target.value)
-  }
+  const router = useRouter();  
+  const dispatch = useDispatch();
+  const message = useSelector(getMessage)
 
-  const handleClick = () => {
-    alert('리퀘스트가 가져가는 이름 : ' + name)
-    const url = `${API.SERVER}/name`
-    const data = { 'name': name }
-    const config = {
-      headers: {
-        "Cache-Control": "no-cache",
-        "Content-Type": "application/json",
-        Authorization: `Bearer blah ~`,
-        "Access-Control-Allow-Origin": "*",
-      }
+    const [user, setUser] = useState({} as IUser)
+
+
+    const handleUsername = (e: any) => {
+        setUser({
+          ...user,
+          username: e.target.value})
     }
-    axios.post(url, data, config)
-      .then(res => {
-        alert('alert : ' + JSON.stringify(res.data))
-        console.log('console : ' + JSON.stringify(res.data))
-      }
-      )
 
-  }
+    const handlePassword = (e: any) => {
+        setUser({
+          ...user,
+          password: e.target.value})
+    }
+
+    const handleSubmit = () => {
+      console.log('user ...'+JSON.stringify(user))
+        dispatch(login(user))
+    }
+
+    useEffect(()=>{
+      if(message==='SUCCESS'){
+        router.push('/pages/board/list')
+      }else{
+        console.log('LOGIN FAIL')
+      }
+    },[message])
+
 
   return (
   <div className='margincenter w-4/5 my-[30px] border-double border-4'>
@@ -51,9 +62,10 @@ export default function Home() {
           <p className="text-xl text-gray-600 text-center">Welcome back!</p>
           <div className="mt-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
-              Email Address
+              ID
             </label>
             <input
+              onChange={handleUsername}
               className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
               type="email"
               required
@@ -66,6 +78,7 @@ export default function Home() {
               </label>
             </div>
             <input
+              onChange={handlePassword}
               className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
               type="password"
             />
@@ -77,7 +90,9 @@ export default function Home() {
             </a>
           </div>
           <div className="mt-8">
-            <button className="bg-blue-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-blue-600">
+            <button 
+            onClick={handleSubmit}
+            className="bg-blue-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-blue-600">
               Login
             </button>
           </div>
@@ -114,13 +129,13 @@ export default function Home() {
             </div>
           </a>
           <div className="mt-4 flex items-center w-full text-center">
-            <a
-              href="#"
+            <Link
+              href="/pages/user/join"
               className="text-xs text-gray-500 capitalize text-center w-full"
             >
               Don&apos;t have any account yet?
               <span className="text-blue-700"> Sign Up</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

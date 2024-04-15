@@ -17,3 +17,18 @@
 .css-1essi2g-MuiDataGrid-columnHeaderRow{border-bottom : solid 0.25px black;}
 .MuiTableRow-root css-1q1u3t4-MuiTableRow-root{border-bottom : solid 0.25px black;}
 .Table-title{fontSize: '20px'; border: '1px solid black'; height: '70px'}
+
+
+ /* external css to add in tailwind's Global css
+ no-scrollbar(class) */
+@layer utilities {
+  @variants responsive {
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  }
+} 
