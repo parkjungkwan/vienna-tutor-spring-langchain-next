@@ -68,7 +68,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public Messenger modify(UserDto dto) {
         User ent = repository.save(dtoToEntity(dto));
-        System.out.println(" ============ BoardServiceImpl modify instanceof =========== ");
+        log.info(" ============ BoardServiceImpl modify Entity Debug =========== ");
+        log.info(ent);
         System.out.println((ent instanceof User) ? "SUCCESS" : "FAILURE");
         return Messenger.builder()
         .message((ent instanceof User) ? "SUCCESS" : "FAILURE")
@@ -91,16 +92,11 @@ public class UserServiceImpl implements UserService {
         return repository.findByUsername(username);
     }
 
+    // SRP 에 따라 아이디 존재여부를 프론트에서 먼저 판단하고, 넘어옴 (시큐리티)
     @Override
     public Messenger login(UserDto dto) {
         return Messenger.builder()
-        .message(
-            findUserByUsername(dto.getUsername()).stream()
-            .filter(i -> i.getPassword().equals(dto.getPassword()))
-            .map(i -> "SUCCESS")
-            .findAny()
-            .orElseGet(() -> "FAILURE")
-        )
+        .message(findUserByUsername(dto.getUsername()).get().getPassword().equals(dto.getPassword()) ? "SUCCESS" : "FAILURE")
         .build();
     }
 

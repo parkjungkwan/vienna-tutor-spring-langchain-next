@@ -41,5 +41,14 @@ public class Article extends BaseEntity{
     @JoinColumn(name = "board_id")
     private Board board;
 
+    public static Article of(Long id,String title, String content){
+        Article article = new Article();
+        article.id = id;
+        article.title = title;
+        article.content = content;
+
+        return article;
+    }
+
 
 }
