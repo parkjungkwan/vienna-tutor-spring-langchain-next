@@ -36,6 +36,11 @@ dependencies {
 	implementation 'org.apache.logging.log4j:log4j-api:2.23.1'
 	implementation 'org.apache.logging.log4j:log4j-core:2.23.1'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.12.5'
+	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.12.5'
+	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.12.5'
+	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.0'
+
 }
 
 // tasks.named('test') {

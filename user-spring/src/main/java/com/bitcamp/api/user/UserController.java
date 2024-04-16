@@ -1,18 +1,11 @@
 package com.bitcamp.api.user;
-import com.bitcamp.api.article.model.ArticleDto;
 import com.bitcamp.api.common.component.Messenger;
 import com.bitcamp.api.common.component.PageRequestVo;
-import com.bitcamp.api.common.component.PageResultVo;
-import com.bitcamp.api.common.proxy.TypeProxy;
-import com.bitcamp.api.user.model.User;
 import com.bitcamp.api.user.model.UserDto;
 import com.bitcamp.api.user.service.UserService;
-import com.bitcamp.api.user.service.UserServiceImpl;
-
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

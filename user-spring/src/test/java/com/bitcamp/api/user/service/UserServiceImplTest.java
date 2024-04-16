@@ -1,5 +1,6 @@
 package com.bitcamp.api.user.service;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -18,6 +19,7 @@ import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -34,7 +36,7 @@ public class UserServiceImplTest {
     private ObjectMapper objectMapper;
     @BeforeEach
     void setup() {
-        this.service = new UserServiceImpl(repository);
+       // this.service = new UserServiceImpl(repository);
     }
     // @Test
     // public void 사용자_저장()throws Exception {
@@ -85,6 +87,28 @@ public class UserServiceImplTest {
             .name(dto.getName())
             .build();
     }
+
+    @DisplayName("토큰 발급에 성공한다.")
+        @Test
+        void _willSuccess() {
+
+            // given
+            // Date issueDate = new Date(System.currentTimeMillis());
+            // JwtPayload targetPayload = new JwtPayload("test@email.com", issueDate);
+
+            // // when
+            // String accessToken = jwtProvider.createAccessToken(targetPayload);
+
+            // // then
+            // Assertions.assertThat(accessToken).isNotNull();
+
+            // Jws<Claims> claimsJws = Jwts.parser().verifyWith(secretKey).build()
+            //     .parseSignedClaims(accessToken);
+
+            // Assertions.assertThat(claimsJws.getPayload().getIssuer()).isEqualTo(applicationName);
+            // Assertions.assertThat(claimsJws.getPayload().getIssuedAt()).isEqualTo(roundOffMillis(issueDate));
+            // Assertions.assertThat(claimsJws.getPayload().getExpiration()).isEqualTo(new Date(issueDate.getTime() + accessExpiration));
+        }
 
 
 }

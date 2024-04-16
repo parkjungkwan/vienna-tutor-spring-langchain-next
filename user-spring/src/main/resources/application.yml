@@ -31,3 +31,7 @@ logging:
       hibernate:
         SQL: debug
         type: trace
+jwt:
+  iss: bitcamp.co.kr
+  exp: 24 * 60 * 60 * 1000
+  secret: bitcampbitcampbitcampbitcampbitcampbitcampbitcamp

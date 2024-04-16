@@ -12,6 +12,7 @@ import org.springdoc.core.converters.models.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import com.bitcamp.api.common.component.JwtProvider;
 import com.bitcamp.api.common.component.Messenger;
 import com.bitcamp.api.common.component.PageRequestVo;
 import com.bitcamp.api.user.model.User;
@@ -24,6 +25,8 @@ import com.bitcamp.api.user.repository.UserRepository;
 public class UserServiceImpl implements UserService {
     
     private final UserRepository repository;
+
+    private final JwtProvider jwtProvider;
 
     @Override
     public Messenger save(UserDto dto) {
@@ -95,8 +98,11 @@ public class UserServiceImpl implements UserService {
     // SRP 에 따라 아이디 존재여부를 프론트에서 먼저 판단하고, 넘어옴 (시큐리티)
     @Override
     public Messenger login(UserDto dto) {
+        boolean flag = repository.findByUsername(dto.getUsername()).get().getPassword().equals(dto.getPassword());
+       
         return Messenger.builder()
-        .message(findUserByUsername(dto.getUsername()).get().getPassword().equals(dto.getPassword()) ? "SUCCESS" : "FAILURE")
+        .message(flag ? "SUCCESS" : "FAILURE")
+        .token(flag ? jwtProvider.createToken(dto) : "None")
         .build();
     }
 
