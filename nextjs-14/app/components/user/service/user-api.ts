@@ -28,7 +28,7 @@ export const loginAPI = async (user: IUser) =>{
     try{
         const response = await instance.post(`/users/login`,user)
         // Java 에서 Messenger.message 에 값을 담음
-        return response.data.message
+        return response.data
     }catch(error){
         console.log(error)
         return error

@@ -4,17 +4,15 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios';
 import Link from "next/link";
-import { instance } from '@/app/components/common/configs/axios-config'
-import { API } from "./components/common/enums/API";
+
 import { useRouter } from "next/navigation";
 import AxiosConfig from "@/app/components/common/configs/axios-config";
-import { getAuth } from "./components/user/service/user-slice";
-import { login } from "./components/user/service/user-service";
-import { IUser } from "./components/user/model/user";
-import nookies,{ parseCookies, destroyCookie, setCookie } from 'nookies'
+import { getAuth } from "@/app/components/user/service/user-slice";
+import { login } from "@/app/components/user/service/user-service";
+import { IUser } from "@/app/components/user/model/user";
 
 
-export default function Home() {
+export default function Login() {
   const router = useRouter();  
   const dispatch = useDispatch();
   const auth = useSelector(getAuth)
@@ -41,9 +39,6 @@ export default function Home() {
 
     useEffect(()=>{
       if(auth.message==='SUCCESS'){
-        setCookie({},'message', auth.message, { httpOnly: true, path: '/' })
-        console.log('서버에서 넘어온 메시지 '+parseCookies().message)
-        console.log('서버에서 넘어온 토큰 '+parseCookies().token)
         router.push('/pages/board/list')
       }else{
         console.log('LOGIN FAIL')

@@ -36,7 +36,7 @@ public class UserServiceImplTest {
     private ObjectMapper objectMapper;
     @BeforeEach
     void setup() {
-       // this.service = new UserServiceImpl(repository);
+       this.service = new UserServiceImpl(repository, null);
     }
     // @Test
     // public void 사용자_저장()throws Exception {
